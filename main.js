@@ -67,7 +67,8 @@ let increament = (id) => {
         search.item += 1;
     }
    
-    console.log(basket);
+   // console.log(basket);
+    update(selectedItem);
 };
 let decreament = (id) => {
     let selectedItem = id;
@@ -79,8 +80,18 @@ let decreament = (id) => {
         search.item -= 1;
     }
    
-    console.log(basket);
+   // console.log(basket);
+    update(selectedItem);
 };
-let update = () => {
-    basket.pop();
+let update = (id) => {
+    let search = basket.find((x)=> x.id === id)
+    console.log(search.item);
+    document.getElementById(id).innerHTML = search.item;
+    calculation();
 };
+
+let calculation = () => {
+  let cartIcon = document.getElementById("cartAmount");
+  cartIcon.innerHTML = basket.map((x)=> x.item).reduce((x,y)=>x+y,0);
+  
+}
